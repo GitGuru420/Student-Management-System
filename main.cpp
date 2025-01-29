@@ -93,6 +93,50 @@ void searchStudent(vector<Student> students) {
     }
 }
 
+// update student
+void updateStudent(vector<Student> &students) {
+    int id;
+    cout << "Enter Student ID: "; cin >> id;
+    bool found = false;
+    int option;
+    for(int i=0; i<students.size(); i++) {
+        if(students[i].getID() == id) {
+            found = true;
+            char choice;
+            do {
+                cout << "1. Update ID" << endl;
+                cout << "2. Update Name" << endl;
+                cout << "3. Update Age" << endl;
+                cout << "Enter Your Choice: "; cin >> option;
+
+                switch(option) {
+                    case 1: {
+                        int newId;
+                        cout << "Enter New ID: "; cin >> newId;
+                        students[i].setID(newId); break;
+                    }
+                    case 2: {
+                        string newName;
+                        cin.ignore();
+                        cout << "Enter New Name: "; getline(cin, newName);
+                        students[i].setName(newName); break;
+                    }   
+                    case 3: {
+                        int newAge;
+                        cout << "Enter New Age: "; cin >> newAge;
+                        students[i].setAge(newAge); break;
+                    }
+                    default: cout << "Invalid Number" << endl;
+                }
+                cout << "Do you want more update ? Yes / No [Y / N]: "; cin >> choice;
+            } while(choice == 'Y' || choice == 'y');
+        }
+    }
+    if(found == false) {
+        cout << "Student Not Found" << endl;
+    }
+}
+
 
 int main()
 {
@@ -114,6 +158,7 @@ int main()
             case 1: addNewStudent(students); break;
             case 2: displayAllStudents(students); break;
             case 3: searchStudent(students); break;
+            case 4: updateStudent(students); break;
             case 6: exit(1);
         }
         cout << "Do you want to continue ? Yes / No [Y / N]: "; 
