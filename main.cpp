@@ -137,6 +137,23 @@ void updateStudent(vector<Student> &students) {
     }
 }
 
+// delete student
+void deleteStudent(vector<Student> &students) {
+    int id;
+    cout << "Enter Student ID: "; cin >> id;
+    bool found = false;
+    for(int i=0; i<students.size(); i++) {
+        if(students[i].getID() == id) {
+            found = true;
+            students.erase(students.begin() + i);
+            cout << "Student Delete Successfully" << endl;
+        }
+    }
+    if(found == false) {
+        cout << "Student Not Found" << endl;
+    }
+}
+
 
 int main()
 {
@@ -159,6 +176,7 @@ int main()
             case 2: displayAllStudents(students); break;
             case 3: searchStudent(students); break;
             case 4: updateStudent(students); break;
+            case 5: deleteStudent(students); break;
             case 6: exit(1);
         }
         cout << "Do you want to continue ? Yes / No [Y / N]: "; 
