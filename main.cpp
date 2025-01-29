@@ -65,7 +65,7 @@ void addNewStudent(vector<Student> &students) {
 }
 
 // display all students
-void displayAllStudents(vector<Student> &students) {
+void displayAllStudents(vector<Student> students) {
     if(students.empty()) {
         cout << "No Students Found" << endl;
         return;
@@ -73,6 +73,23 @@ void displayAllStudents(vector<Student> &students) {
     for(int i=0; i<students.size(); i++) {
         students[i].displayStudent();
         cout << endl;
+    }
+}
+
+// search student
+void searchStudent(vector<Student> students) {
+    int searchID;
+    cout << "Enter Student ID: "; cin >> searchID;
+    bool found = false;
+    for(int i=0; i<students.size(); i++) {
+        if(students[i].getID() == searchID) {
+            students[i].displayStudent();
+            found = true;
+            return;
+        }
+    }
+    if(found == false) {
+        cout << "Students Not Found" << endl;
     }
 }
 
@@ -96,6 +113,7 @@ int main()
         switch(option) {
             case 1: addNewStudent(students); break;
             case 2: displayAllStudents(students); break;
+            case 3: searchStudent(students); break;
             case 6: exit(1);
         }
         cout << "Do you want to continue ? Yes / No [Y / N]: "; 
