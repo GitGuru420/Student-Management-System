@@ -36,10 +36,12 @@ class Student {
             return age;
         }
 
+        // display student information
         void displayStudent() {
-            cout << "ID No: " << id << endl;
-            cout << "Name: " << name << endl;
-            cout << "Age: " << age << endl;
+            cout << endl;
+            cout << "Student ID No: " << id << endl;
+            cout << "Student Name: " << name << endl;
+            cout << "Student Age: " << age << endl;
         }
 };
 
@@ -72,7 +74,6 @@ void displayAllStudents(vector<Student> students) {
     }
     for(int i=0; i<students.size(); i++) {
         students[i].displayStudent();
-        cout << endl;
     }
 }
 
@@ -83,12 +84,13 @@ void searchStudent(vector<Student> students) {
     bool found = false;
     for(int i=0; i<students.size(); i++) {
         if(students[i].getID() == searchID) {
+            cout << "Students Found and Below He's/She's Information" << endl;
             students[i].displayStudent();
             found = true;
             return;
         }
     }
-    if(found == false) {
+    if(!found) {
         cout << "Students Not Found" << endl;
     }
 }
@@ -104,25 +106,29 @@ void updateStudent(vector<Student> &students) {
             found = true;
             char choice;
             do {
-                cout << "1. Update ID" << endl;
-                cout << "2. Update Name" << endl;
-                cout << "3. Update Age" << endl;
-                cout << "Enter Your Choice: "; cin >> option;
+                cout << "What Do You Want ?" << endl;
+                cout << "1. Update Student ID" << endl;
+                cout << "2. Update Student Name" << endl;
+                cout << "3. Update Student Age" << endl;
+                cout << "Enter Your Option: "; cin >> option;
 
                 switch(option) {
                     case 1: {
                         int newId;
+                        cout << "Student Previous ID: " << students[i].getID() << endl;
                         cout << "Enter New ID: "; cin >> newId;
                         students[i].setID(newId); break;
                     }
                     case 2: {
                         string newName;
+                        cout << "Student Previous Name: " << students[i].getName() << endl;
                         cin.ignore();
                         cout << "Enter New Name: "; getline(cin, newName);
                         students[i].setName(newName); break;
                     }   
                     case 3: {
                         int newAge;
+                        cout << "Student Previous Age: " << students[i].getID() << endl;
                         cout << "Enter New Age: "; cin >> newAge;
                         students[i].setAge(newAge); break;
                     }
@@ -132,7 +138,7 @@ void updateStudent(vector<Student> &students) {
             } while(choice == 'Y' || choice == 'y');
         }
     }
-    if(found == false) {
+    if(!found) {
         cout << "Student Not Found" << endl;
     }
 }
@@ -182,5 +188,6 @@ int main()
         cout << "Do you want to continue ? Yes / No [Y / N]: "; 
         cin >> choice;
     } while(choice == 'Y' || choice == 'y');
+
     return 0;
 }
